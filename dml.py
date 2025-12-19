@@ -95,5 +95,4 @@
 # --     and to_char(o.order_date, 'YYYY') = '1997'
 # -- group by c.city, oy
 # -- order by c.city, oy;
-#
-#
+
