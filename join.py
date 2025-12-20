@@ -12,11 +12,16 @@
 # -- 2-misol
 # -- Amerikada yashovchi eng faol hodimlar haqida ma`lumot shakllantiring
 #
-# -- select e.employee_id,e.first_name,e.last_name,e.country,count(o.order_id) as jami_zakaz from employees e
+# -- select e.employee_id,e.country,count(o.order_id) from employees e
 # -- join orders o on e.employee_id = o.employee_id
-# -- where e.country = 'usa'
+# -- where e.country='USA'
 # -- group by e.employee_id,e.first_name,e.last_name,e.country
-# -- order by jami_zakaz
+# -- having count(o.order_id)=(select count(o.order_id) from employees e
+# -- join orders o on e.employee_id = o.employee_id
+# -- where e.country='USA'
+# -- group by e.employee_id,e.first_name,e.last_name,e.country
+# -- order by count(o.order_id) desc limit 1)
+# -- order by count(o.order_id) desc
 #
 # -- 3-misol
 # -- Qaysi davlatdagi hodimlar eng faol ishlashi haqidagi hisobot shakllantiring
@@ -94,3 +99,82 @@
 # -- join orders o on c.customer_id = o.customer_id
 # -- group by c.customer_id,c.company_name
 # -- order by jami_zakaz desc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# -- 3-misol
+# -- Qaysi yilda eng ko`p zakaz qilingan mahsulot va sakaz qilgan kompaniya haqida ma’lumot.
+#
+# -- select p.product_name,to_char(order_date,'yyyy'),c.company_name,count(o.order_id) from products p
+# -- inner join order_details od on p.product_id=od.product_id
+# -- inner join orders o on o.order_id=od.order_id
+# -- inner join customers c on c.customer_id=o.customer_id
+# -- group by p.product_name,to_char(o.order_date,'yyyy'),c.company_name
+# -- having count(o.order_id)=(select count(o.order_id)from products p
+# -- inner join order_details od on p.product_id=od.product_id
+# -- inner join orders o on o.order_id=od.order_id
+# -- inner join customers c on c.customer_id=o.customer_id
+# -- group by p.product_name, to_char(o.order_date,'yyyy'),c.company_name
+# -- order by count(o.order_id) desc limit 1)
+# -- order by count(o.order_id) desc
+#
+# -- 4-misol
+# -- Eng ko`p zakaz qilgan va eng minimal narxdagi mahsulot va zakaz qilgan kompaniya haqida
+# -- ma`lumot
+#
+# -- select p.product_name, to_char(order_date,'yyyy'),c.company_name,count(o.order_id) from products p
+# -- inner join order_details od on p.product_id=od.product_id
+# -- inner join orders o on o.order_id=od.order_id
+# -- inner join customers c on c.customer_id=o.customer_id
+# -- where p.product_id=(select product_id from products
+# -- where unit_price=(select min(unit_price)from products))
+# -- group by p.product_name,to_char(o.order_date,'yyyy'),c.company_name
+# -- having count(o.order_id)=(select count(o.order_id) from products p
+# -- inner join order_details od on p.product_id=od.product_id
+# -- inner join orders o on o.order_id=od.order_id
+# -- inner join customers c on c.customer_id=o.customer_id
+# -- where p.product_id=(select product_id from products
+# -- where unit_price=(select min(unit_price)from products))
+# -- group by p.product_name,to_char(o.order_date,'yyyy'),c.company_name
+# -- order by count(o.order_id) desc limit 1)
+# -- order by count(o.order_id) desc
+#
+# -- 6-misol
+# -- Amerikada yashovchi eng faol hodimlar haqida ma`lumot shakllantiring
+#
+# -- select e.employee_id,e.country,count(o.order_id) from employees e
+# -- join orders o on e.employee_id = o.employee_id
+# -- where e.country='USA'
+# -- group by e.employee_id,e.first_name,e.last_name,e.country
+# -- having count(o.order_id)=(select count(o.order_id) from employees e
+# -- join orders o on e.employee_id = o.employee_id
+# -- where e.country='USA'
+# -- group by e.employee_id,e.first_name,e.last_name,e.country
+# -- order by count(o.order_id) desc limit 1)
+# -- order by count(o.order_id) desc
+#
+# -- 7-misol
+# -- Qaysi davlatdagi hodimlar eng faol ishlashi haqidagi hisobot shakllantiring
+#
+# -- select e.country, count(order_id) from employees as e
+# -- inner join orders o on o.employee_id=e.employee_id
+# -- group by e.country
+# -- having count (o.order_id)=(select count(o.order_id) from employees as e
+# -- inner join orders o on o.employee_id=e.emloyee_id
+# -- group by e.country order by e.count desc limit 1)
+#
+# -- 10-misol
+# -- 1-kategoriyadagi eng qimmat sotilgan 10ta mahsulot kim tomonidan zakaz qilinganligi va qaysi
+# -- kompaniya tomonidan yetkazib berilganligi haqida ma`lumot
+
