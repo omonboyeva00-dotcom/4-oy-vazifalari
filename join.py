@@ -178,3 +178,5 @@
 # -- 1-kategoriyadagi eng qimmat sotilgan 10ta mahsulot kim tomonidan zakaz qilinganligi va qaysi
 # -- kompaniya tomonidan yetkazib berilganligi haqida ma`lumot
 
+
+# senior darajada organish, postgresqlda 100ta savol javob
