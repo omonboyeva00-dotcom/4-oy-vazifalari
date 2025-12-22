@@ -1,3 +1,5 @@
+# oxirgi 6ta misol
+
 # -- 1-misol
 # -- 5 tadan ko’p buyurtmani o’z vaqtida yetkazib bermagan hodimlar ro’yxatini chop eting
 #
