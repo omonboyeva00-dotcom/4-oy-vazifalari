@@ -6,7 +6,7 @@
 # # # -- );
 # # # -- create table products (
 # # # -- product_id integer primary key,
-
+#
 # # # -- product_name varchar(50) not null,
 # # # -- supplier_id integer,
 # # # -- category_id integer,
